@@ -1,16 +1,17 @@
-package frc.robot.subsystems.flywheel;
+package frc.robot.subsystems.arm;
 
 import org.littletonrobotics.junction.AutoLog;
 
-public interface FlywheelIO {
+public interface ArmIO {
   @AutoLog
-  public static class FlywheelIOInputs {
+  public static class ArmIOInputs {
+    public double positionRad = 0.0;
     public double velocityRadPerSec = 0.0;
     public double currentAmps = 0.0;
   }
 
   /** Updates the set of loggable inputs. */
-  public default void updateInputs(FlywheelIOInputs inputs) {
+  public default void updateInputs(ArmIOInputs inputs) {
   }
 
   /** Run closed loop at the specified velocity. */

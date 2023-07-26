@@ -8,13 +8,16 @@ import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.flywheel.Flywheel;
-import frc.robot.subsystems.flywheel.FlywheelIO;
-import frc.robot.subsystems.flywheel.FlywheelIOSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
+import frc.robot.subsystems.arm.Arm;
+import frc.robot.subsystems.arm.ArmIO;
+import frc.robot.subsystems.arm.ArmIOSim;
+import frc.robot.subsystems.flywheel.Flywheel;
+import frc.robot.subsystems.flywheel.FlywheelIO;
+import frc.robot.subsystems.flywheel.FlywheelIOSim;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -26,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 public class RobotContainer {
   // Subsystems
   private final Flywheel flywheel;
+  private final Arm arm;
 
   // Controller
   private final CommandGenericHID controller = new CommandGenericHID(0);
@@ -41,11 +45,13 @@ public class RobotContainer {
       // Sim robot, instantiate physics sim IO implementations
       case SIM:
         flywheel = new Flywheel(new FlywheelIOSim());
+        arm = new Arm(new ArmIOSim());
         break;
 
       // Replayed robot, disable IO implementations
       default:
         flywheel = new Flywheel(new FlywheelIO() {});
+        arm = new Arm(new ArmIO() {});
         break;
     }
 
@@ -63,6 +69,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // Key 'z' when using Keyboard 0 inside the Simulation GUI as port 0
     controller.button(1)
         .whileTrue(new StartEndCommand(flywheel::run, flywheel::stop, flywheel));
   }

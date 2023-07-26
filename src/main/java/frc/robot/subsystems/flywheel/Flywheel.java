@@ -18,6 +18,7 @@ public class Flywheel extends SubsystemBase {
     Logger.getInstance().processInputs("Flywheel", inputs);
   }
 
+  /** Runs flywheel at full speed */
   public void run() {
     io.set(1.0);
   }
