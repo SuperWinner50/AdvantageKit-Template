@@ -14,7 +14,7 @@ public interface ArmIO {
   public default void updateInputs(ArmIOInputs inputs) {
   }
 
-  /** Run closed loop at the specified velocity. */
+  /** Set input amount to motor */
   public default void set(double input) {
   }
 

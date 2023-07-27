@@ -5,7 +5,7 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 
 public class ArmIOSim implements ArmIO {
-  private SingleJointedArmSim sim = new SingleJointedArmSim(DCMotor.getNEO(1), 72, 0.8, 0.7, 0.0, 2 * Math.PI, true);
+  private SingleJointedArmSim sim = new SingleJointedArmSim(DCMotor.getNEO(1), 72, 0.8, 0.7, -Math.PI / 2, 3 * Math.PI / 2, true);
 
   @Override
   public void updateInputs(ArmIOInputs inputs) {

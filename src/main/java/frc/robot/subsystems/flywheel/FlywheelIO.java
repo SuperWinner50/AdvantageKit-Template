@@ -13,7 +13,7 @@ public interface FlywheelIO {
   public default void updateInputs(FlywheelIOInputs inputs) {
   }
 
-  /** Run closed loop at the specified velocity. */
+  /** Set input amount to motor */
   public default void set(double input) {
   }
 

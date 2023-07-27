@@ -18,6 +18,11 @@ public class Arm extends SubsystemBase {
     io.updateInputs(inputs);
     Logger.getInstance().processInputs("Arm", inputs);
 
+    // Update visualizer position
     viz.update(inputs.positionRad);
+  }
+
+  public void run(double input) {
+    io.set(input);
   }
 }

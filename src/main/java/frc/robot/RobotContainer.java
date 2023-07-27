@@ -9,6 +9,7 @@ import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
@@ -57,6 +58,15 @@ public class RobotContainer {
 
     // Set up auto routines
     autoChooser.addDefaultOption("Do Nothing", new InstantCommand());
+
+    // Run arm using axis 1 (W,S) as input
+    // Multiply input by 0.5 to reduce speed
+    arm.setDefaultCommand(
+      Commands.run(
+        () -> arm.run(controller.getRawAxis(1) * 0.5),
+        arm
+      )
+    );
 
     // Configure the button bindings
     configureButtonBindings();
